@@ -4,7 +4,7 @@ Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## Table of Contents
-
+- [Hackathon Readme](#hackathon-readme)
 - [Updating to New Releases](#updating-to-new-releases)
 - [Sending Feedback](#sending-feedback)
 - [Folder Structure](#folder-structure)
@@ -94,6 +94,13 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
   - [Moment.js locales are missing](#momentjs-locales-are-missing)
 - [Something Missing?](#something-missing)
+
+## Hackathon Readme
+
+* `create-react-app` was used to create the react-app
+* node-sass-chokidar was the module used to allow sass to function properly
+* `npm install -g express-generator` was used to install the required express generator
+* `express react-backend` created the backend that I needed to generate
 
 ## Updating to New Releases
 
