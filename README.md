@@ -97,10 +97,16 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 ## Hackathon Readme
 
+Random Installation Notes
+
 * `create-react-app` was used to create the react-app
 * node-sass-chokidar was the module used to allow sass to function properly
 * `npm install -g express-generator` was used to install the required express generator
 * `express react-backend` created the backend that I needed to generate
+* `brew install imagemagick@6` installs imagemagick 6 (Mac OSX)
+* `echo $PATH` this environmental variable had to be setup for imagemagick@6 (Mac OSX... may apply to others)
+* `echo $PKG_CONFIG_PATH` this environmental variable had to be setup for the `*.pc` files inside of imagemagick (for Mac OSX only)
+* all environmental variable configurations were put into .bash_profile (Mac OSX... may apply to others)
 
 ## Updating to New Releases
 
