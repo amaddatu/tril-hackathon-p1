@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import md5 from 'md5';
+import Header from './subcomponents/header.js';
+import Home from './subcomponents/home.js';
+import Login from './subcomponents/login.js';
 import './App.css';
+import ReactRouterDOM, {BrowserRouter,Switch,Route,Link} from 'react-router-dom';
+
 
 class App extends Component {
   constructor(props) {
@@ -16,6 +21,21 @@ class App extends Component {
 
   render() {
     return (
+
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+          <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route path='/login' component={Login}/>
+          </Switch>
+        
+        </div>
+      </BrowserRouter>
+    );
+  }
+  /*render() {
+    return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -27,7 +47,7 @@ class App extends Component {
         {this.state.test}
       </div>
     );
-  }
+  }*/
 }
 
 export default App;
