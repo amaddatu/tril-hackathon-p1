@@ -4,8 +4,8 @@ import md5 from 'md5';
 import Header from './subcomponents/header.js';
 import Home from './subcomponents/home.js';
 import Login from './subcomponents/login.js';
+import { Route } from 'react-router';
 import './App.css';
-import ReactRouterDOM, {BrowserRouter,Switch,Route,Link} from 'react-router-dom';
 
 
 class App extends Component {
@@ -21,17 +21,11 @@ class App extends Component {
 
   render() {
     return (
-
-      <BrowserRouter>
-        <div className="App">
-          <Header />
-          <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route path='/login' component={Login}/>
-          </Switch>
-        
-        </div>
-      </BrowserRouter>
+      <div className="App">
+        <Header />
+        <Route path="/" exact component={Home} />
+        <Route path="/login" component={Login} />
+      </div>
     );
   }
   /*render() {
