@@ -4,6 +4,7 @@ import md5 from 'md5';
 import Header from './subcomponents/header.js';
 import Main from './subcomponents/main.js';
 import './App.css';
+import './bootstrap/bootstrap.css';
 
 
 class App extends Component {
