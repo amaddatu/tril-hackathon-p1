@@ -7,7 +7,7 @@ const class_group_orm = require('../orm/class_db_orm.js');
 var class_data = new class_group_orm();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-	//res.send('server is up and responding to users');
+	res.send('server is up and responding to users');
 	//res.send('testing');
 	// res.send(path.resolve(path.join('image_cache/created','capybara.jpg')));
 	// var filestart = path.resolve(path.join('image_cache/created','capybara.jpg'));
@@ -19,23 +19,30 @@ router.get('/', function(req, res, next) {
 	// 	quality: 100 // (best) to 1 (worst) 
 	// }));
 	//imagemagick
-	class_data.getUsersTest().spread(function (users) {
-		res.send('Hello users' + JSON.stringify(users));
-	});
+	// class_data.getUsersTest().spread(function (users) {
+	// 	res.send('Hello users' + JSON.stringify(users));
+	// });
 });
 
 router.post('/login', function(req, res, next){
+	class_data.getUser(req.body.username, req.body.password).spread(function(users){
+		res.json(users);
+	});
+	//res.send(req.body.password);
+
+	// class_data.getUsersTest().spread(function (users) {
+	// 	res.send('Hello users' + JSON.stringify(users));
+	// });
 	// res.json({
 	// 	status: 'successful'
-	// 	, username: 'amaddatu'
-	// 	, firstname: 'Anthony'
-	// 	, lastname: 'Maddatu'
+	// 	, user_name: 'amaddatu'
+	// 	, name: 'Anthony'
 	// 	, role: 'admin'
 	// });
 	// res.json({
 	// 	status: 'failed'
 	// });
-	res.json(process.env);
+	//res.json(req.body);
 });
 
 module.exports = router;

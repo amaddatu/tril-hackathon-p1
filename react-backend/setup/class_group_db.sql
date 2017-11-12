@@ -55,12 +55,17 @@ CREATE TABLE IF NOT EXISTS `job_attributes` (
   PRIMARY KEY (`job_id`, `attribute_id`))
 ENGINE = InnoDB;
 
+-- DROP TABLE IF EXISTS `class_group_db`.`users`;
+
 CREATE TABLE IF NOT EXISTS `class_group_db`.`users` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
-  `user_name` VARCHAR(45) NULL,
+  `username` VARCHAR(45) NULL,
   `password` VARCHAR(128) NULL,
   `name` VARCHAR(45) NULL,
   `role` VARCHAR(45) NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC))
-ENGINE = InnoDB
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
+ENGINE = InnoDB;
+
+INSERT INTO `class_group_db`.`users` (`username`, `password`, `name`, `role`) VALUES ('anthony', '1', 'Anthony', 'admin');
+INSERT INTO `class_group_db`.`users` (`username`, `password`, `name`, `role`) VALUES ('john', '1', 'John', 'student');
