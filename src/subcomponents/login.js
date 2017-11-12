@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
 import md5 from 'md5';
+import api from '../backend-utilities/api.js';
 
 class Login extends Component {
   constructor(props){
@@ -9,12 +10,16 @@ class Login extends Component {
     this.state = {
       test: "..."
       , username: ""
+      , password: ""
     };
   }
   componentDidMount(){
     var self = this;
-    axios.get('/users/').then(function(response){
-      self.setState({test: response.data});
+    // axios.get('/users/').then(function(response){
+    //   self.setState({test: response.data});
+    // });
+    api.poopTest().then(function(response){
+      self.setState({test: JSON.stringify(response.data)});
     });
     
   }
@@ -66,7 +71,8 @@ class Login extends Component {
         </form>
         <br/>
         {this.state.username}<br/>
-        {this.state.password}
+        {this.state.password}<br/>
+        {this.state.test}
       </div>
     );
   }
