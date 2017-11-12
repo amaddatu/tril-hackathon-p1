@@ -20,4 +20,17 @@ router.get('/', function(req, res, next) {
 	//imagemagick
 });
 
+router.post('/login', function(req, res, next){
+	// res.json({
+	// 	status: 'successful'
+	// 	, username: 'amaddatu'
+	// 	, firstname: 'Anthony'
+	// 	, lastname: 'Maddatu'
+	// 	, role: 'admin'
+	// });
+	res.json({
+		status: 'poop'
+	});
+});
+
 module.exports = router;
