@@ -40,6 +40,7 @@ class Login extends Component {
         var login = login_data[0];
         self.setState({test: JSON.stringify(login)});
         self.props.logInHandler(event, login.username, login.password, login.name, login.role);
+        self.props.loginRedirect();
       }
       else{
         self.setState({test: 'Login Failed'});
@@ -64,7 +65,6 @@ class Login extends Component {
     return (
       <div className="Login">
         <h1>Login</h1>
-        {this.state.poop}
 
 
         <form onSubmit={this.testSubmit} className="login-form">
