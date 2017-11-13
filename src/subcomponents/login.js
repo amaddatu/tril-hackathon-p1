@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import axios from 'axios';
+// import axios from 'axios';
 import md5 from 'md5';
 import api from '../backend-utilities/api.js';
 
@@ -11,21 +11,40 @@ class Login extends Component {
       test: "..."
       , username: ""
       , password: ""
+      , logged_in: props.logged_in
+      , poop: props.poop
     };
+    this.logInHandler = props.logInHandler;
   }
   componentDidMount(){
-    var self = this;
-    // axios.get('/users/').then(function(response){
-    //   self.setState({test: response.data});
+    // var self = this;
+    // // axios.get('/users/').then(function(response){
+    // //   self.setState({test: response.data});
+    // // });
+    // api.poopTest().then(function(response){
+    //   self.setState({test: JSON.stringify(response.data)});
     // });
-    api.poopTest().then(function(response){
-      self.setState({test: JSON.stringify(response.data)});
-    });
     
   }
   testSubmit = event => {
     event.preventDefault();
     console.log("Submitted");
+  };
+  loginSubmit = event => {
+    var self = this;
+    event.preventDefault();
+    api.login(this.state.username, this.state.password).then(function(response){
+      //self.setState({test: JSON.stringify(response.data)});
+      var login_data = response.data;
+      if(Array.isArray(login_data) && login_data.length === 1){
+        var login = login_data[0];
+        self.setState({test: JSON.stringify(login)});
+        self.props.logInHandler(event, login.username, login.password, login.name, login.role);
+      }
+      else{
+        self.setState({test: 'Login Failed'});
+      }
+    });
   };
   handleInputChange = event => {
     const name = event.target.name;
@@ -36,7 +55,7 @@ class Login extends Component {
   };
   handlePasswordChange = event => {
     const name = event.target.name;
-    const value = md5(event.target.value);
+    const value = md5('salty salt salt' + event.target.value);
     this.setState({
       [name]: value
     });
@@ -45,6 +64,8 @@ class Login extends Component {
     return (
       <div className="Login">
         <h1>Login</h1>
+        {this.state.poop}
+
 
         <form onSubmit={this.testSubmit} className="login-form">
           <div className="username-wrapper">
@@ -64,7 +85,7 @@ class Login extends Component {
             />
           </div>
           <div className="button-wrapper">
-            <button onClick={this.testSubmit} className="btn btn-primary">
+            <button onClick={this.loginSubmit} className="btn btn-primary">
               Login
             </button>
           </div>

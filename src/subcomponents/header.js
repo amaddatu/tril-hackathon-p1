@@ -3,7 +3,40 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 
 class Header extends Component {
+
+	constructor(props){
+		super(props);
+		this.state = {
+			logged_in: props.logged_in
+			, name: props.name
+			, role: props.role
+		}
+	}
+	componentWillReceiveProps(nextProps){
+		this.setState({
+			logged_in: nextProps.logged_in
+			, name: nextProps.name
+			, role: nextProps.role
+		});
+	}
+	logOutHandler = event => {
+		this.props.logOutHandler();
+	};
   render() {
+  	var isLoggedIn = this.state.logged_in;
+
+    let loginlogoutbutton = null;
+    if (isLoggedIn) {
+      loginlogoutbutton = <li className="nav-item">
+		        <Link className="nav-link" to="/" onClick={this.logOutHandler}>
+		        	Log Out
+		        </Link>
+		      </li>;
+    } else {
+      loginlogoutbutton = <li className="nav-item">
+		        <Link className="nav-link" to="/login">Login</Link>
+		      </li>;
+    }
     return (
       <div className="Header">
       	<nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -17,10 +50,11 @@ class Header extends Component {
 		      <li className="nav-item">
 		        <Link className="nav-link" to="/">Home</Link>
 		      </li>
-		      <li className="nav-item">
-		        <Link className="nav-link" to="/login">Login</Link>
-		      </li>
+
+		      {loginlogoutbutton}
 		    </ul>
+
+		      {this.state.logged_in}
 		  </div>
 		</nav>
       </div>

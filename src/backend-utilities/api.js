@@ -8,4 +8,13 @@ export default {
   poopTest: function(){
   	return axios.post('/users/login');
   }
+
+  , login: function(username, password){
+  	return axios.post(
+  		'/users/login'
+  		, {username: username, password: password}
+  		, {headers: {'content-type': 'application/json'}}
+  	);
+
+  }
 };
