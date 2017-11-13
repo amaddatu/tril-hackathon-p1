@@ -17,14 +17,17 @@ class Login extends Component {
     this.logInHandler = props.logInHandler;
   }
   componentDidMount(){
-    // var self = this;
-    // // axios.get('/users/').then(function(response){
-    // //   self.setState({test: response.data});
-    // // });
-    // api.poopTest().then(function(response){
-    //   self.setState({test: JSON.stringify(response.data)});
-    // });
-    
+    if(this.state.logged_in){
+      this.props.loginRedirect();
+    }
+  }
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      logged_in: nextProps.logged_in
+    });
+    if(nextProps.logged_in){
+      this.props.loginRedirect();
+    }
   }
   testSubmit = event => {
     event.preventDefault();
@@ -40,7 +43,8 @@ class Login extends Component {
         var login = login_data[0];
         self.setState({test: JSON.stringify(login)});
         self.props.logInHandler(event, login.username, login.password, login.name, login.role);
-        self.props.loginRedirect();
+        //the redirect now happens in the props recieve
+        //self.props.loginRedirect();
       }
       else{
         self.setState({test: 'Login Failed'});
